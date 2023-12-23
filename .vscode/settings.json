@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
     "Satoshi"
-  ]
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

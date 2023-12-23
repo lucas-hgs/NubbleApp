@@ -1,17 +1,23 @@
 import React from 'react';
-import {ThemeProvider} from '@shopify/restyle/dist/context';
-import {SafeAreaView} from 'react-native';
 
-import {Text} from './src/components/Text/Text';
-import {theme} from './src/theme/theme';
+import {ToastProvider} from '@services';
+import {ThemeProvider} from '@shopify/restyle/dist/context';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+
+import {Toast} from '@components';
+import {Router} from '@routes';
+import {theme} from '@theme';
 
 function App(): JSX.Element {
   return (
-    <ThemeProvider theme={theme}>
-      <SafeAreaView>
-        <Text preset="headingLarge">Teste</Text>
-      </SafeAreaView>
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <ThemeProvider theme={theme}>
+        <ToastProvider>
+          <Router />
+          <Toast />
+        </ToastProvider>
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }
 
