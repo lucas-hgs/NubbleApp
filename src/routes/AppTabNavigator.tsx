@@ -9,7 +9,7 @@ import {Icon, Text} from '@components';
 import {
   FavoriteScreen,
   HomeScreen,
-  MyProfileScreen,
+  ProfileScreen,
   NewPostScreen,
 } from '@screens';
 
@@ -18,7 +18,7 @@ import {AppTabBar} from './AppTabBar';
 export type AppTabBottomTabParamList = {
   HomeScreen: undefined;
   FavoriteScreen: undefined;
-  MyProfileScreen: undefined;
+  ProfileScreen: undefined;
   NewPostScreen: undefined;
 };
 
@@ -60,7 +60,7 @@ export function AppTabNavigator() {
       />
       <Tab.Screen name="NewPostScreen" component={NewPostScreen} />
       <Tab.Screen name="FavoriteScreen" component={FavoriteScreen} />
-      <Tab.Screen name="MyProfileScreen" component={MyProfileScreen} />
+      <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
     </Tab.Navigator>
   );
 }

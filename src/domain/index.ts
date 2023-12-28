@@ -12,4 +12,10 @@ export * from './PostComment/useCases/usePostCommentList';
 export * from './PostComment/useCases/usePostCommentCreate';
 export * from './PostComment/useCases/usePostCommentRemove';
 
+export * from './User/userApi';
+export * from './User/userService';
+export * from './User/userTypes';
+export * from './User/userAdapter';
+export * from './User/useCases/useUserGetById';
+
 export * from './Auth';

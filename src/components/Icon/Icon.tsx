@@ -13,6 +13,7 @@ import {ChatIcon} from '../../assets/icons/ChatIcon';
 import {ChatOnIcon} from '../../assets/icons/ChatOnIcon';
 import {CheckRoundIcon} from '../../assets/icons/CheckRoundIcon';
 import {CommentIcon} from '../../assets/icons/CommentIcon';
+import {ErrorRoundIcon} from '../../assets/icons/ErrorRoundIcon';
 import {EyeOffIcon} from '../../assets/icons/EyeOffIcon';
 import {EyeOnIcon} from '../../assets/icons/EyeOnIcon';
 import {HeartFillIcon} from '../../assets/icons/HeartFillIcon';
@@ -69,6 +70,7 @@ const iconRegistry = {
   comment: CommentIcon,
   eyeOn: EyeOnIcon,
   eyeOff: EyeOffIcon,
+  errorRound: ErrorRoundIcon,
   heart: HeartIcon,
   heartFill: HeartFillIcon,
   home: HomeIcon,
