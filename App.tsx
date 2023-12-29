@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {ThemeProvider} from '@shopify/restyle/dist/context';
-import {QueryClient} from '@tanstack/react-query';
-import {QueryClientProvider} from '@tanstack/react-query/build/legacy/QueryClientProvider';
+import {QueryClientProvider, QueryClient} from '@tanstack/react-query';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {Toast} from '@components';
