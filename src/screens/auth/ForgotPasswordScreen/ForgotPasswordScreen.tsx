@@ -5,13 +5,17 @@ import {useForm} from 'react-hook-form';
 
 import {Button, FormTextInput, Screen, Text} from '@components';
 import {useResetNavigationSuccess} from '@hooks';
+import {AuthScreenProps} from '@routes';
 
 import {
-  forgotPasswordSchema,
   ForgotPasswordSchema,
+  forgotPasswordSchema,
 } from './forgotPasswordSchema';
 
-export function ForgotPasswordScreen() {
+export function ForgotPasswordScreen({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  navigation,
+}: AuthScreenProps<'ForgotPasswordScreen'>) {
   const {reset} = useResetNavigationSuccess();
 
   const {control, formState, handleSubmit} = useForm<ForgotPasswordSchema>({
@@ -22,39 +26,39 @@ export function ForgotPasswordScreen() {
     mode: 'onChange',
   });
 
-  function submitForm() {
+  function submitForm(values: ForgotPasswordSchema) {
+    console.log(values);
     reset({
-      title: 'As instruções para resetar sua senha foram enviadas!',
+      title: `Enviamos as instruções ${'\n'}para seu e-mail`,
       description:
-        'Um email com as informações para resetar a sua senha foi enviado, em alguns minutos você deve recebe-lo. Por favor, siga os passos para resetar a sua senha!',
+        'Clique no link enviado no seu e-mail para recuperar sua senha',
       icon: {
         name: 'messageRound',
         color: 'primary',
       },
     });
   }
-
   return (
     <Screen canGoBack>
       <Text preset="headingLarge" mb="s16">
-        Recuperar Senha
+        Esqueci minha senha
       </Text>
       <Text preset="paragraphLarge" mb="s32">
-        Entre com o seu email registrado que enviaremos os próximos passos para
-        resetar a sua senha!
+        Digite seu e-mail e enviaremos as instruções para redefinição de senha
       </Text>
+
       <FormTextInput
         control={control}
         name="email"
+        label="E-mail"
+        placeholder="Digite seu e-mail"
         boxProps={{mb: 's40'}}
-        label="Email"
-        placeholder="Type your email"
       />
 
       <Button
         disabled={!formState.isValid}
         onPress={handleSubmit(submitForm)}
-        title="Recuperar Senha"
+        title="Recuperar senha"
       />
     </Screen>
   );
