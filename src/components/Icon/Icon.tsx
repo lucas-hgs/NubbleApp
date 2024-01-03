@@ -25,6 +25,7 @@ import {NewPostIcon} from '../../assets/icons/NewPostIcon';
 import {ProfileFillIcon} from '../../assets/icons/ProfileFillIcon';
 import {ProfileIcon} from '../../assets/icons/ProfileIcon';
 import {SearchIcon} from '../../assets/icons/SearchIcon';
+import {SettingsIcon} from '../../assets/icons/SettingsIcon';
 
 export interface IconBase {
   size?: number;
@@ -80,6 +81,7 @@ const iconRegistry = {
   profileIcon: ProfileIcon,
   profileFill: ProfileFillIcon,
   search: SearchIcon,
+  settings: SettingsIcon,
 };
 
 type IconType = typeof iconRegistry;
