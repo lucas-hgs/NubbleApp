@@ -16,6 +16,7 @@ export function AuthCredentialsProvider({
 }: React.PropsWithChildren<{}>) {
   const [authCredentials, setAuthCredentials] =
     useState<AuthCredentials | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, setLoading] = useState(true);
 
   async function saveCredentials(ac: AuthCredentials): Promise<void> {
