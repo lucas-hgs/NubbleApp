@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {useAuthIsUsernameAvailable, useAuthSignUp} from '@domain';
+import {useAuthSignUp} from '@domain';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
 
@@ -16,6 +16,7 @@ import {useResetNavigationSuccess} from '@hooks';
 import {AuthScreenProps, AuthStackParamList} from '@routes';
 
 import {signUpSchema, SignUpSchema} from './signUpSchema';
+import {useAsyncValidation} from './useAsyncValidation';
 
 const resetParam: AuthStackParamList['SuccessScreen'] = {
   title: 'Sua conta foi criada com sucesso!',
@@ -53,13 +54,8 @@ export function SignUpScreen({}: AuthScreenProps<'SignUpScreen'>) {
     signUp(formValues);
   }
 
-  const username = watch('username');
-  const usernameState = getFieldState('username');
-  const usernameIsValid = !usernameState.invalid && usernameState.isDirty;
-  const usernameQuery = useAuthIsUsernameAvailable({
-    username,
-    enabled: usernameIsValid,
-  });
+  const usernameValidation = useAsyncValidation({watch, getFieldState});
+
   return (
     <Screen canGoBack scrollable>
       <Text preset="headingLarge" mb="s32">
@@ -70,13 +66,11 @@ export function SignUpScreen({}: AuthScreenProps<'SignUpScreen'>) {
         control={control}
         name="username"
         label="Seu username"
-        errorMessage={
-          usernameQuery.isUnavailable ? 'Username indisponível' : undefined
-        }
+        errorMessage={usernameValidation.errorMessage}
         placeholder="@"
         boxProps={{mb: 's20'}}
         RightComponent={
-          usernameQuery.isFetching ? (
+          usernameValidation.isFetching ? (
             <ActivityIndicator size={'small'} />
           ) : undefined
         }
@@ -117,11 +111,7 @@ export function SignUpScreen({}: AuthScreenProps<'SignUpScreen'>) {
 
       <Button
         loading={isLoading}
-        disabled={
-          !formState.isValid ||
-          usernameQuery.isFetching ||
-          usernameQuery.isUnavailable
-        }
+        disabled={!formState.isValid || usernameValidation.notReady}
         onPress={handleSubmit(submitForm)}
         title="Criar uma conta"
       />
