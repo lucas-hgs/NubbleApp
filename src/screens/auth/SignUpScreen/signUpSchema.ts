@@ -1,10 +1,14 @@
 import {stringUtils} from '@utils';
 import {z} from 'zod';
 
-const userNameRegex = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/gim;
+const usernameRegex = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{5,29}$/gim;
 
 export const signUpSchema = z.object({
-  username: z.string().regex(userNameRegex, 'Username inválido').toLowerCase(),
+  username: z
+    .string()
+    .min(5, 'username muito curto')
+    .regex(usernameRegex, 'Username inválido')
+    .toLowerCase(),
   firstName: z
     .string()
     .min(5, 'Nome muito curto')
