@@ -3,6 +3,7 @@ export * from './hooks/useAuthSignIn';
 export * from './hooks/useAuthSignOut';
 export * from './hooks/useAuthSignUp';
 export * from './hooks/useAuthIsUsernameAvailable';
+export * from './hooks/useAuthRequestNewPassword';
 
 export * from './authAdapter';
 export * from './authApi';
