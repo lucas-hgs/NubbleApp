@@ -2,6 +2,8 @@ import {User, UserAPI} from '../User/userTypes';
 
 export interface AuthCredentials {
   token: string;
+  tokenExpiresAt: string;
+  refreshToken: string;
   user: User;
 }
 
@@ -9,6 +11,8 @@ export interface AuthCredentialsAPI {
   auth: {
     type: string; //'bearer';
     token: string; // 'NA.GCfDf81QRs0q4VxyFSEvWs8kZ-DoZnl5zKLn8UDY8ntedjZCPgxVxfFijlQy';
+    tokenExpiresAt: string;
+    refreshToken: string;
   };
   user: UserAPI;
 }
