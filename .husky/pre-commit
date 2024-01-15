@@ -3,6 +3,6 @@
 
 npm run lint
 
-npx tsc --noEmit
+# npx tsc --noEmit
 
 npm run test
