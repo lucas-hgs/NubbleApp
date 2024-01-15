@@ -5,4 +5,5 @@ module.exports = {
   setupFilesAfterEnv: ['@testing-library/jest-native/extend-expect'],
   moduleDirectories: ['node_modules', './src/test'],
   modulePathIgnorePatterns: ['.*/mockedData/.*'],
+  setupFiles: ['<rootDir>/src/test/jestSetup.ts'],
 };
