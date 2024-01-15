@@ -4,4 +4,5 @@ module.exports = {
   coveragePathIgnorePatterns: ['/node_modules', 'index'],
   setupFilesAfterEnv: ['@testing-library/jest-native/extend-expect'],
   moduleDirectories: ['node_modules', './src/test'],
+  modulePathIgnorePatterns: ['.*/mockedData/.*'],
 };
