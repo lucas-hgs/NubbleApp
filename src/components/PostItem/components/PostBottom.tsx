@@ -7,10 +7,10 @@ import {Box, Text} from '@components';
 
 type Props = Pick<Post, 'author' | 'text' | 'commentCount' | 'id'>;
 
-export function PostBottom({author, commentCount, text, id}: Props) {
-  let commentText = getCommentText(commentCount);
-
+export function PostBottom({author, text, commentCount, id}: Props) {
   const navigation = useNavigation();
+
+  const commentText = getCommentText(commentCount);
 
   function navigateToPostCommentScreen() {
     navigation.navigate('PostCommentScreen', {
@@ -24,27 +24,28 @@ export function PostBottom({author, commentCount, text, id}: Props) {
       <Text preset="paragraphMedium" bold>
         {author.userName}
       </Text>
-      <Text color="gray1" semiBold preset="paragraphMedium">
+      <Text preset="paragraphMedium" color="gray1">
         {text}
       </Text>
-
-      <Text
-        onPress={navigateToPostCommentScreen}
-        bold
-        preset="paragraphSmall"
-        mt="s8"
-        color="primary">
-        {commentText}
-      </Text>
+      {commentText && (
+        <Text
+          onPress={navigateToPostCommentScreen}
+          mt="s8"
+          preset="paragraphSmall"
+          bold
+          color="primary">
+          {commentText}
+        </Text>
+      )}
     </Box>
   );
 }
 
-function getCommentText(commentCount: number): string {
+function getCommentText(commentCount: number): string | null {
   if (commentCount === 0) {
-    return 'faça o primeiro comentário';
+    return null;
   } else if (commentCount === 1) {
-    return 'ver 1 comentário';
+    return 'ver comentário';
   } else {
     return `ver ${commentCount} comentários`;
   }
