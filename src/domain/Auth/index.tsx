@@ -1,9 +1,9 @@
-export * from './hooks/useUser';
-export * from './hooks/useAuthSignIn';
-export * from './hooks/useAuthSignOut';
-export * from './hooks/useAuthSignUp';
-export * from './hooks/useAuthIsUsernameAvailable';
-export * from './hooks/useAuthRequestNewPassword';
+export * from './useCases/useUser';
+export * from './useCases/useAuthSignIn';
+export * from './useCases/useAuthSignOut';
+export * from './useCases/useAuthSignUp';
+export * from './useCases/useAuthIsUsernameAvailable';
+export * from './useCases/useAuthRequestNewPassword';
 
 export * from './authAdapter';
 export * from './authApi';
