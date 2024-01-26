@@ -2,6 +2,8 @@ import {api, PageAPI, PageParams} from '@api';
 
 import {PostCommentAPI} from './postCommentTypes';
 
+export const POST_COMMENT_PATH = 'user/post_comment';
+
 async function getList(
   post_id: number,
   pageParams?: PageParams,
