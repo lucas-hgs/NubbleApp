@@ -1,4 +1,3 @@
-export * from './useCases/useUser';
 export * from './useCases/useAuthSignIn';
 export * from './useCases/useAuthSignOut';
 export * from './useCases/useAuthSignUp';
