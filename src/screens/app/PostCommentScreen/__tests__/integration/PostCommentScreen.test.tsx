@@ -1,16 +1,28 @@
 import React from 'react';
+import {Alert, AlertButton} from 'react-native';
 
 import {authCredentialsStorage} from '@services';
-import {mockedPostComment, server} from '@test';
-import {fireEvent, renderScreen, screen} from 'test-utils';
+import {mockedPostComment, server, resetMemoryResponse} from '@test';
+import {
+  fireEvent,
+  renderScreen,
+  screen,
+  waitForElementToBeRemoved,
+} from 'test-utils';
 
 import {PostCommentScreen} from '../../PostCommentScreen';
 
 beforeAll(() => server.listen());
 
-afterEach(() => server.resetHandlers());
+afterEach(() => {
+  server.resetHandlers();
+  resetMemoryResponse();
+});
 
-afterAll(() => server.close());
+afterAll(() => {
+  server.close();
+  jest.resetAllMocks();
+});
 
 describe('integration: PostCommentScreen', () => {
   test('When adding a comment the list is automatically updated', async () => {
@@ -46,13 +58,23 @@ describe('integration: PostCommentScreen', () => {
     expect(newComment).toBeTruthy();
 
     const comments = await screen.findAllByTestId('post-comment-id');
-    expect(comments.length).toBe(2);
+    expect(comments.length).toBe(3);
   });
 
   test('When Deleting a comment, the list is automatically updated and a toast message is displayed', async () => {
     jest
       .spyOn(authCredentialsStorage, 'get')
       .mockResolvedValue(mockedPostComment.mateusAuthCredentials);
+
+    let mockedConfirm: AlertButton['onPress'];
+
+    const mockedAlert = jest
+      .spyOn(Alert, 'alert')
+      .mockImplementation((title, message, buttons) => {
+        if (buttons && buttons[0]) {
+          mockedConfirm = buttons[0].onPress;
+        }
+      });
 
     renderScreen(
       <PostCommentScreen
@@ -69,14 +91,38 @@ describe('integration: PostCommentScreen', () => {
     );
 
     //esperar a lista carregar
-
     //identificar o comentário que será deletado
+
+    const comment = await screen.findByText(
+      mockedPostComment.mateusPostCommentAPI.message,
+      {
+        exact: false,
+      },
+    );
+
+    expect(comment).toBeTruthy();
 
     // long press no comentário
 
+    fireEvent(comment, 'longPress');
+
+    expect(mockedAlert).toHaveBeenCalled();
+
     // pressionar em confirmar no alert
 
+    mockedConfirm && mockedConfirm();
+
     // verificar se a lista foi atualizada
+
+    await waitForElementToBeRemoved(() =>
+      screen.getByText(mockedPostComment.mateusPostCommentAPI.message, {
+        exact: false,
+      }),
+    );
+
+    const comments = await screen.findAllByTestId('post-comment-id');
+
+    expect(comments.length).toBe(1);
 
     // verificar se apareceu o toast message
   });
