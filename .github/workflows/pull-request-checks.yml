@@ -28,14 +28,3 @@ jobs:
 
       - name: Run test
         run: yarn test
-  3 changes: 2 additions & 1 deletion3  
-package.json
-@@ -11,7 +11,8 @@
-    "coverage": "jest --verbose --coverage",	    "coverage": "jest --verbose --coverage",
-    "prepare": "husky install",	    "prepare": "husky install",
-    "art:3333": "adb reverse tcp:3333 tcp:3333",	    "art:3333": "adb reverse tcp:3333 tcp:3333",
-    "ap": "adb shell input text"	    "ap": "adb shell input text",
-    "pre-commit": "yarn lint && yarn tsc --noEmit && yarn test"
-  },	  },
-  "dependencies": {	  "dependencies": {
-    "@hookform/resolvers": "^3.1.0",	    "@hookform/resolvers": "^3.1.0",
