@@ -4,15 +4,20 @@ import {Alert, AlertButton} from 'react-native';
 import {authCredentialsStorage} from '@services';
 import {mockedPostComment, server, resetMemoryResponse} from '@test';
 import {
+  act,
   fireEvent,
   renderScreen,
   screen,
+  waitFor,
   waitForElementToBeRemoved,
 } from 'test-utils';
 
 import {PostCommentScreen} from '../../PostCommentScreen';
 
-beforeAll(() => server.listen());
+beforeAll(() => {
+  server.listen();
+  jest.useFakeTimers();
+});
 
 afterEach(() => {
   server.resetHandlers();
@@ -22,6 +27,7 @@ afterEach(() => {
 afterAll(() => {
   server.close();
   jest.resetAllMocks();
+  jest.useRealTimers();
 });
 
 describe('integration: PostCommentScreen', () => {
@@ -125,5 +131,13 @@ describe('integration: PostCommentScreen', () => {
     expect(comments.length).toBe(1);
 
     // verificar se apareceu o toast message
+
+    await waitFor(() =>
+      expect(screen.getByTestId('toast-message')).toBeTruthy(),
+    );
+
+    act(() => jest.runAllTimers());
+
+    expect(screen.queryByTestId('toast-message')).toBeNull();
   });
 });
