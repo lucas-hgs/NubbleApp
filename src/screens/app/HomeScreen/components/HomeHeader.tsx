@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {SimpleLogo} from '@brand';
+import {useNavigation} from '@react-navigation/native';
 
 import {Box, BoxProps, Icon} from '@components';
 import {useAppSafeArea} from '@hooks';
@@ -8,11 +9,17 @@ import {useAppSafeArea} from '@hooks';
 export function HomeHeader() {
   const {top} = useAppSafeArea();
 
+  const navigation = useNavigation();
+
+  function navigateToSearchScreen() {
+    navigation.navigate('SearchScreen');
+  }
+
   return (
     <Box {...$wrapper} style={{paddingTop: top}}>
       <SimpleLogo width={70} />
       <Box flexDirection="row" gap="s24">
-        <Icon name="search" />
+        <Icon name="search" onPress={navigateToSearchScreen} />
         <Icon name="bellOn" color="carrotSecondary" />
         <Icon name="chatOn" color="carrotSecondary" />
       </Box>

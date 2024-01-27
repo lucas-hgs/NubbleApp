@@ -6,6 +6,7 @@ import {IconProps} from '@components';
 import {
   ForgotPasswordScreen,
   LoginScreen,
+  SearchScreen,
   SignUpScreen,
   SuccessScreen,
 } from '@screens';
@@ -19,6 +20,7 @@ export type AuthStackParamList = {
     icon: Pick<IconProps, 'color' | 'name'>;
   };
   ForgotPasswordScreen: undefined;
+  SearchScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
@@ -38,6 +40,7 @@ export function AuthStack() {
         name="ForgotPasswordScreen"
         component={ForgotPasswordScreen}
       />
+      <Stack.Screen name="SearchScreen" component={SearchScreen} />
     </Stack.Navigator>
   );
 }
