@@ -6,6 +6,8 @@ import {User, useUserSearch} from '@domain';
 import {Icon, ProfileUser, Screen, Text, TextInput} from '@components';
 import {useDebounce} from '@hooks';
 
+import {SearchHistory} from './components/SearchHistory';
+
 export function SearchScreen() {
   const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search);
@@ -28,11 +30,15 @@ export function SearchScreen() {
         />
       }>
       <Text>Search Screen</Text>
-      <FlatList
-        data={list}
-        renderItem={renderItem}
-        keyExtractor={item => item.username}
-      />
+      {search.length === 0 ? (
+        <SearchHistory />
+      ) : (
+        <FlatList
+          data={list}
+          renderItem={renderItem}
+          keyExtractor={item => item.username}
+        />
+      )}
     </Screen>
   );
 }
