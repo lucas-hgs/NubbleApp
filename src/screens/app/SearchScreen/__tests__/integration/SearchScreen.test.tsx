@@ -6,6 +6,8 @@ import {fireEvent, renderScreen, screen} from 'test-utils';
 
 import {AppStack} from '@routes';
 
+jest.unmock('@react-navigation/native');
+
 beforeAll(() => {
   server.listen();
   jest
@@ -35,5 +37,10 @@ describe('integration: SearchScreen', () => {
 
     const user2 = await screen.findByText(userMocked.user2.username);
     expect(user2).toBeTruthy();
+
+    fireEvent.press(user1);
+
+    const userFullName = await screen.findByText(userMocked.user1.full_name);
+    expect(userFullName).toBeTruthy();
   });
 });
