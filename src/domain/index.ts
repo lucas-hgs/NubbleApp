@@ -18,5 +18,6 @@ export * from './User/userTypes';
 export * from './User/userAdapter';
 export * from './User/useCases/useUserGetById';
 export * from './User/useCases/useUserSearch';
+export {USER_PATH} from './User/userApi';
 
 export * from './Auth';

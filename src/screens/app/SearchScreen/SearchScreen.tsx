@@ -4,12 +4,13 @@ import {FlatList, ListRenderItemInfo} from 'react-native';
 import {User, useUserSearch} from '@domain';
 import {useSearchHistoryService} from '@services';
 
-import {Icon, ProfileUser, Screen, Text, TextInput} from '@components';
+import {Icon, ProfileUser, Screen, TextInput} from '@components';
 import {useDebounce} from '@hooks';
+import {AppScreenProps} from '@routes';
 
 import {SearchHistory} from './components/SearchHistory';
 
-export function SearchScreen() {
+export function SearchScreen({}: AppScreenProps<'SearchScreen'>) {
   const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search);
   const {addUser} = useSearchHistoryService();
@@ -21,9 +22,7 @@ export function SearchScreen() {
       <ProfileUser
         onPress={() => addUser(item)}
         user={item}
-        avatarProps={{
-          size: 48,
-        }}
+        avatarProps={{size: 48}}
       />
     );
   }
@@ -36,10 +35,9 @@ export function SearchScreen() {
           placeholder="Digite sua busca"
           value={search}
           onChangeText={setSearch}
-          LeftComponent={<Icon name="search" color="gray3" />}
+          LeftComponent={<Icon color="gray3" name="search" />}
         />
       }>
-      <Text>Search Screen</Text>
       {search.length === 0 ? (
         <SearchHistory />
       ) : (
