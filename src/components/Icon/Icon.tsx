@@ -9,6 +9,7 @@ import {BellIcon} from '../../assets/icons/BellIcon';
 import {BellOnIcon} from '../../assets/icons/BellOnIcon';
 import {BookmarkFillIcon} from '../../assets/icons/BookmarkFillIcon';
 import {BookmarkIcon} from '../../assets/icons/BookmarkIcon';
+import {CameraIcon} from '../../assets/icons/CameraIcon';
 import {ChatIcon} from '../../assets/icons/ChatIcon';
 import {ChatOnIcon} from '../../assets/icons/ChatOnIcon';
 import {CheckRoundIcon} from '../../assets/icons/CheckRoundIcon';
@@ -66,6 +67,7 @@ const iconRegistry = {
   bellOn: BellOnIcon,
   bookmark: BookmarkIcon,
   bookmarkFill: BookmarkFillIcon,
+  camera: CameraIcon,
   chat: ChatIcon,
   chatOn: ChatOnIcon,
   checkRound: CheckRoundIcon,
