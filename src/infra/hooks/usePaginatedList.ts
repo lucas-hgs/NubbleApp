@@ -29,7 +29,8 @@ export function usePaginatedList<Data>(
 
   const query = useInfiniteQuery({
     queryKey,
-    queryFn: ({pageParam = 1}) => getList(pageParam),
+    queryFn: ({pageParam}) => getList(pageParam),
+    initialPageParam: 1,
     getNextPageParam: ({meta}) =>
       meta.hasNextPage ? meta.currentPage + 1 : undefined,
     enabled: options?.enabled,
