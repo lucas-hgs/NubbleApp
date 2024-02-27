@@ -1,6 +1,8 @@
 import React from 'react';
 import {ImageBackground} from 'react-native';
 
+import {useNavigation} from '@react-navigation/native';
+
 import {Box, BoxProps, Button, Icon, Text} from '@components';
 
 interface Props {
@@ -9,6 +11,16 @@ interface Props {
 }
 
 export function Header({imageUri, imageWidth}: Props) {
+  const navigation = useNavigation();
+
+  function navigateToPublishPost() {
+    if (imageUri) {
+      navigation.navigate('PublishPostScreen', {
+        imageUri,
+      });
+    }
+  }
+
   return (
     <Box>
       <ImageBackground
@@ -19,7 +31,12 @@ export function Header({imageUri, imageWidth}: Props) {
           justifyContent: 'flex-end',
           alignItems: 'center',
         }}>
-        <Button preset="ghost" title="Escolher essa" mb="s24" />
+        <Button
+          onPress={navigateToPublishPost}
+          preset="ghost"
+          title="Escolher essa"
+          mb="s24"
+        />
       </ImageBackground>
       <Box {...$optionsStyle}>
         <Text preset="headingSmall">Sua galeria</Text>

@@ -11,3 +11,4 @@ export * from './app/NewPostScreen/NewPostScreen';
 export * from './app/PostCommentScreen/PostCommentScreen';
 export * from './app/MyProfileScreen/MyProfileScreen';
 export * from './app/SearchScreen/SearchScreen';
+export * from './app/PublishPostScreen/PublishPostScreen';
