@@ -1,9 +1,9 @@
 import React from 'react';
-import {Linking} from 'react-native';
+import {Linking, Platform} from 'react-native';
 
 import {PermissionName, usePermission} from '@services';
 
-import {ActivityIndicator, Button, Screen, Text} from '@components';
+import {ActivityIndicator, Box, Button, Screen, Text} from '@components';
 
 interface PermissionManagerProps {
   permissionName: PermissionName;
@@ -31,11 +31,24 @@ export function PermissionManager({
       {isLoading && <ActivityIndicator color="primary" />}
 
       {status === 'never_ask_again' && (
-        <Button
-          title="Abrir Configurações"
-          onPress={Linking.openSettings}
-          mt="s16"
-        />
+        <Box>
+          {Platform.OS === 'android' && (
+            <Text
+              preset="paragraphMedium"
+              color="error"
+              bold
+              marginVertical="s16"
+              textAlign="center">
+              É necessário abrir e fechar o App novamente após alterar as
+              configurações
+            </Text>
+          )}
+          <Button
+            title="Abrir Configurações"
+            onPress={Linking.openSettings}
+            mt="s16"
+          />
+        </Box>
       )}
     </Screen>
   );
