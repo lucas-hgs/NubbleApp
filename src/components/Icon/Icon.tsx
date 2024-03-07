@@ -9,6 +9,7 @@ import {BellIcon} from '../../assets/icons/BellIcon';
 import {BellOnIcon} from '../../assets/icons/BellOnIcon';
 import {BookmarkFillIcon} from '../../assets/icons/BookmarkFillIcon';
 import {BookmarkIcon} from '../../assets/icons/BookmarkIcon';
+import {CameraClick} from '../../assets/icons/CameraClick';
 import {CameraIcon} from '../../assets/icons/CameraIcon';
 import {ChatIcon} from '../../assets/icons/ChatIcon';
 import {ChatOnIcon} from '../../assets/icons/ChatOnIcon';
@@ -17,6 +18,8 @@ import {CommentIcon} from '../../assets/icons/CommentIcon';
 import {ErrorRoundIcon} from '../../assets/icons/ErrorRoundIcon';
 import {EyeOffIcon} from '../../assets/icons/EyeOffIcon';
 import {EyeOnIcon} from '../../assets/icons/EyeOnIcon';
+import {FlashOffIcon} from '../../assets/icons/FlashOffIcon';
+import {FlashOnIcon} from '../../assets/icons/FlashOnIcon';
 import {HeartFillIcon} from '../../assets/icons/HeartFillIcon';
 import {HeartIcon} from '../../assets/icons/HeartIcon';
 import {HomeFillIcon} from '../../assets/icons/HomeFillIcon';
@@ -68,6 +71,7 @@ const iconRegistry = {
   bookmark: BookmarkIcon,
   bookmarkFill: BookmarkFillIcon,
   camera: CameraIcon,
+  cameraClick: CameraClick,
   chat: ChatIcon,
   chatOn: ChatOnIcon,
   checkRound: CheckRoundIcon,
@@ -75,6 +79,8 @@ const iconRegistry = {
   eyeOn: EyeOnIcon,
   eyeOff: EyeOffIcon,
   errorRound: ErrorRoundIcon,
+  flashOff: FlashOffIcon,
+  flashOn: FlashOnIcon,
   heart: HeartIcon,
   heartFill: HeartFillIcon,
   home: HomeIcon,
