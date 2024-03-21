@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
 
 import {useIsFocused} from '@react-navigation/native';
@@ -20,6 +20,8 @@ const CONTROL_DIFF = 30;
 export function CameraScreen({navigation}: AppScreenProps<'CameraScreen'>) {
   const {top} = useAppSafeArea();
   const [flashOn, setFlashOne] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+
   const device = useCameraDevice('back', {
     physicalDevices: [
       'ultra-wide-angle-camera',
@@ -28,11 +30,26 @@ export function CameraScreen({navigation}: AppScreenProps<'CameraScreen'>) {
     ],
   });
 
+  const camera = useRef<Camera>(null);
+
   const format = useCameraFormat(device, Templates.Instagram);
 
   const isFocused = useIsFocused();
   const appState = useAppState();
   const isActive = isFocused && appState === 'active';
+
+  async function takePhoto() {
+    if (camera.current) {
+      const photoFile = await camera.current?.takePhoto({
+        flash: flashOn ? 'on' : 'off',
+        qualityPrioritization: 'quality',
+      });
+
+      navigation.navigate('PublishPostScreen', {
+        imageUri: `file://${photoFile?.path}`,
+      });
+    }
+  }
 
   function toggleFlash() {
     setFlashOne(prev => !prev);
@@ -48,6 +65,9 @@ export function CameraScreen({navigation}: AppScreenProps<'CameraScreen'>) {
             device={device}
             isActive={isActive}
             style={StyleSheet.absoluteFill}
+            photo={true}
+            onInitialized={() => setIsReady(true)}
+            enableHighQualityPhotos={true}
           />
         )}
 
@@ -69,7 +89,14 @@ export function CameraScreen({navigation}: AppScreenProps<'CameraScreen'>) {
           </Box>
 
           <Box {...$controlAreaBottom}>
-            <Icon size={80} name="cameraClick" color="grayWhite" />
+            {isReady && (
+              <Icon
+                size={80}
+                name="cameraClick"
+                color="grayWhite"
+                onPress={takePhoto}
+              />
+            )}
           </Box>
         </Box>
       </Box>
