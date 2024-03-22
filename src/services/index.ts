@@ -9,3 +9,5 @@ export * from './searchHistory';
 export * from './cameraRoll';
 
 export * from './permission';
+
+export * from './multimedia';
